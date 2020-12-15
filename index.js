@@ -124,21 +124,23 @@ class Peer extends stream.Duplex {
       this._onIceCandidate(event)
     }
 
+    console.log('Init simple-peer library...');
+
     // Other spec events, unused by this implementation:
     // - onconnectionstatechange
     // - onicecandidateerror
     // - onfingerprintfailure
     // - onnegotiationneeded
 
-    if (this.initiator || this.channelNegotiated) {
-      this._setupData({
-        channel: this._pc.createDataChannel(this.channelName, this.channelConfig)
-      })
-    } else {
-      this._pc.ondatachannel = event => {
-        this._setupData(event)
-      }
-    }
+    // if (this.initiator || this.channelNegotiated) {
+    //   this._setupData({
+    //     channel: this._pc.createDataChannel(this.channelName, this.channelConfig)
+    //   })
+    // } else {
+    //   this._pc.ondatachannel = event => {
+    //     this._setupData(event)
+    //   }
+    // }
 
     if (this.streams) {
       this.streams.forEach(stream => {
